@@ -12,6 +12,8 @@ import javax.persistence.criteria.Root;
 import de.ls5.wt2.conf.auth.permission.ViewFirstFiveNewsItemsPermission;
 import de.ls5.wt2.entity.DBNews;
 import de.ls5.wt2.entity.DBNews_;
+import de.ls5.wt2.entity.DBTodo;
+import de.ls5.wt2.entity.DBTodo_;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.Permission;
 import org.apache.shiro.subject.Subject;
@@ -20,11 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Transactional
 @RestController
@@ -93,4 +91,7 @@ public class AuthNewsREST {
 
         return news;
     }
+
 }
+
+

@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/example06.iml" filepath="$PROJECT_DIR$/.idea/example06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example06.iml" filepath="$PROJECT_DIR$/example06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example06/example06-business/example06-business.iml" filepath="$PROJECT_DIR$/example06/example06-business/example06-business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example06/example06-parent.iml" filepath="$PROJECT_DIR$/example06/example06-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example06/example06-persistence/example06-persistence.iml" filepath="$PROJECT_DIR$/example06/example06-persistence/example06-persistence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example06/example06-presentation/example06-presentation.iml" filepath="$PROJECT_DIR$/example06/example06-presentation/example06-presentation.iml" />
     </modules>
   </component>
 </project>
