@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from './news.service';
-import { News } from '../news';
+import { Todo } from '../todo';
 
 @Component({
   selector: 'wt2-angular',
@@ -10,8 +10,8 @@ import { News } from '../news';
 })
 export class AngularComponent implements OnInit {
 
-  public latest: News;
-  public news: News[] = [];
+  public latest: Todo;
+  public news: Todo[] = [];
 
   constructor(protected newsService: NewsService) {
   }
@@ -21,10 +21,6 @@ export class AngularComponent implements OnInit {
   }
 
   load(): void {
-    this.newsService.getNewest().subscribe({
-      next: news => this.latest = news,
-      error: console.error
-    });
     this.newsService.getAll().subscribe({
       next: news => this.news = news,
       error: console.error

@@ -2,15 +2,30 @@
   Nothing to see here.
 </div>
 
-<div *ngIf="news != null">
-  <div class="text-muted">
-    <small>{{news.publishedOn | date}}</small>
+<div *ngIf="news !== null">
+  <div>
+    <span>Headline: </span>
+    <span *ngIf="!editMode">{{news.headline}}</span>
+    <span *ngIf="editMode"><input [(ngModel)]="headline" type="text"></span>
   </div>
-  <div class="mt-2">
-    <h5>{{news.headline}}</h5>
-    <div [innerHTML]="getTrustedHtml(news.content)" *ngIf="allowHtmlContent"></div>
-    <div *ngIf="!allowHtmlContent">
-      {{news.content}}
-    </div>
+  <div>
+    <span>Content: </span>
+    <span *ngIf="!editMode">
+      <span [innerHTML]="getTrustedHtml(news.content)" *ngIf="allowHtmlContent"></span>
+      <span *ngIf="!allowHtmlContent">
+        {{news.content}}
+      </span>
+    </span>
+    <span *ngIf="editMode"><input [(ngModel)]="content" type="text"></span>
   </div>
+</div>
+
+<div *ngIf="!editMode" style="margin-top: 8px;">
+  <button type="button" (click)="setInputValue(); editMode = true" style="margin-right: 5px;">✏️ Edit</button>
+  <button type="button" (click)="deleteItem()">🗑️ Delete</button>
+</div>
+
+<div *ngIf="editMode" style="margin-top: 8px;">
+  <button type="button" (click)="editMode = false" style="margin-right: 5px;">Cancel</button>
+  <button type="button" (click)="editMode = false; saveItem()">✔ Save</button>
 </div>

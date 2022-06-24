@@ -18,6 +18,7 @@ export class CreateNewsComponent {
   constructor(private newsService: NewsService) { }
 
   public createNews(e: Event): void {
+    console.log("creating")
     e.preventDefault();
     this.errorMessage = null;
 

@@ -27,11 +27,6 @@ public class ShiroConfig {
     }
 
     @Bean
-    public Realm jwtRealm() {
-        return new JWTWT2Realm();
-    }
-
-    @Bean
     public DefaultWebSecurityManager securityManager(Realm realm, Realm jwtRealm) {
         return new DefaultWebSecurityManager(Arrays.asList(jwtRealm, realm));
     }
@@ -46,17 +41,12 @@ public class ShiroConfig {
         filters.put("restAuthenticator", new BasicAuthenticationFilterWithoutRedirect());
         filters.put("loginFilter", new FormAuthenticationFilterWithoutRedirect());
         filters.put("logoutFilter", new LogoutFilterWithoutRedirect());
-        filters.put("jwtFilter", new JWTAuthenticationFilter());
 
 
         final Map<String, String> chainDefinition = new LinkedHashMap<>();
 
         // configuration for stateless authentication on each request
         chainDefinition.put("/rest/auth/basic/**", "noSessionCreation, restAuthenticator");
-
-        // configuration for JWT based authentication
-        chainDefinition.put("/rest/auth/jwt/authenticate", "anon");
-        chainDefinition.put("/rest/auth/jwt/**", "noSessionCreation, jwtFilter");
 
         // configuration for using session based authentication
         chainDefinition.put("/login.jsp", "loginFilter");

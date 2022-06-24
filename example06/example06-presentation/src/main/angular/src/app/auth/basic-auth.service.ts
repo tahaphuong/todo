@@ -9,6 +9,7 @@ import { environment as env } from '../../environments/environment';
 export class BasicAuthService extends AuthService {
 
   private token: string;
+  private username: string;
 
   login(username: string, password: string): Observable<boolean> {
     const token = btoa(unescape(encodeURIComponent(username + ':' + password)));
@@ -16,6 +17,8 @@ export class BasicAuthService extends AuthService {
     return this.http.head(`${this.getBaseUrl()}/profile`, {headers: this.getAuthHeadersForToken(token), responseType: 'text'})
         .pipe(map(body => {
           this.token = token;
+          this.username = username;
+
           return true;
         }));
   }
@@ -41,5 +44,9 @@ export class BasicAuthService extends AuthService {
 
   get isLoggedIn(): boolean {
     return this.token != null;
+  }
+
+  getUsername(): string {
+    return this.username;
   }
 }

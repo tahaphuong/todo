@@ -8,23 +8,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularComponent } from './angular/angular.component';
 import { AuthComponent } from './auth/auth.component';
-import { SecurityComponent } from './security/security.component';
 import { CreateNewsComponent } from './angular/create-news/create-news.component';
 import { NewsDetailsComponent } from './angular/news-details/news-details.component';
-import { CreateNewsSecurityComponent } from './security/create-news-security/create-news-security.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CreateNewsAuthComponent } from './auth/create-news-auth/create-news-auth.component';
 import { NewsListComponent } from './angular/news-list/news-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     AngularComponent,
     AuthComponent,
-    SecurityComponent,
     CreateNewsComponent,
-    CreateNewsSecurityComponent,
     CreateNewsAuthComponent,
     NewsDetailsComponent,
     LoginComponent,
@@ -36,7 +33,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
