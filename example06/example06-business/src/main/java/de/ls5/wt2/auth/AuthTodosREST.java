@@ -64,10 +64,11 @@ public class AuthTodosREST {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public DBTodo create(@RequestBody final DBTodo param) {
+    public DBTodo create(@RequestBody final DBTodo param) throws Exception {
 
-        SecurityUtils.getSubject().checkRole("admin");
-
+        if (!SecurityUtils.getSubject().isAuthenticated()) {
+            throw new Exception("Not authenticated");
+        }
         final DBTodo toDos = new DBTodo();
 
         toDos.setHeadline(param.getHeadline());

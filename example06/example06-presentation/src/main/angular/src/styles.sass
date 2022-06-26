@@ -1,9 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "../node_modules/bootstrap/scss/bootstrap"
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap')
+
+$main-font: 'Plus Jakarta Sans', sans-serif
+$base-color: #7d719c
+$secondary-color: #848484
+$h1-size: xx-large
+$h2-size: 22px
+$text-size: 14px
+
+*
+  font-family: $main-font
 
 html
   font-size: .875rem
 
 body
   padding-bottom: 2rem
+
+input:focus, textarea:focus, select:focus
+  outline: none

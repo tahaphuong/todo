@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { News } from './news';
+import { Todo } from './todo';
 
 export abstract class BaseNewsService {
   protected defaultHeaders = new HttpHeaders({
@@ -10,9 +10,7 @@ export abstract class BaseNewsService {
   protected constructor(protected http: HttpClient) {
   }
 
-  abstract getNewest(): Observable<News>;
+  abstract getAll(): Observable<Todo[]>;
 
-  abstract getAll(): Observable<News[]>;
-
-  abstract create(headline: string, content: string): Observable<News>;
+  abstract create(headline: string, content: string): Observable<Todo>;
 }

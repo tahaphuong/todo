@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { News } from '../../news';
+import { Todo } from '../../todo';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
@@ -10,10 +10,14 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class NewsDetailsComponent {
 
   @Input()
-  public news: News;
+  public news: Todo;
 
   @Input()
   public allowHtmlContent: boolean;
+
+  public editMode = false;
+  public headline: string;
+  public content: string;
 
   constructor(private domSanitizer: DomSanitizer) {
     this.allowHtmlContent = false;
@@ -21,5 +25,19 @@ export class NewsDetailsComponent {
 
   getTrustedHtml(value: string): SafeHtml {
     return this.domSanitizer.bypassSecurityTrustHtml(value);
+  }
+
+  //PUT
+  setInputValue() {
+
+  }
+
+  saveItem() {
+
+  }
+
+  // DELETE
+  deleteItem() {
+
   }
 }

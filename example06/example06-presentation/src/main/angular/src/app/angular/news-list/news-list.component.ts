@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { News } from '../../news';
+import { Todo } from '../../todo';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'wt2-news-list',
@@ -9,9 +10,29 @@ import { News } from '../../news';
 export class NewsListComponent {
 
   @Input()
-  public news: News[] = [];
+  public news: Todo[] = [];
 
-  get reversedNews(): News[] {
+  @Input()
+  public allowHtmlContent: boolean;
+
+  public selectedTodo: Todo
+
+  constructor(private domSanitizer: DomSanitizer) {
+    this.allowHtmlContent = false;
+  }
+
+  get reversedNews(): Todo[] {
     return this.news.slice().reverse();
+  }
+
+  onSelect(todo : Todo) {
+    if (this.selectedTodo === todo) {
+      this.selectedTodo = null;
+    }
+    this.selectedTodo = todo;
+  }
+
+  getTrustedHtml(value: string): SafeHtml {
+    return this.domSanitizer.bypassSecurityTrustHtml(value);
   }
 }

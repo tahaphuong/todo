@@ -77,9 +77,12 @@ public class AuthNewsREST {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
                  produces = MediaType.APPLICATION_JSON_VALUE)
-    public DBNews create(@RequestBody final DBNews param) {
+    public DBNews create(@RequestBody final DBNews param) throws Exception {
 
-        SecurityUtils.getSubject().checkRole("admin");
+        // SecurityUtils.getSubject().checkRole("admin");
+        if (!SecurityUtils.getSubject().isAuthenticated()) {
+            throw new Exception("Not authenticated");
+        }
 
         final DBNews news = new DBNews();
 

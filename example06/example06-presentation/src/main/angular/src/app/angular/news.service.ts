@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { News } from '../news';
+import { Todo } from '../todo';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseNewsService } from '../base-news.service';
@@ -13,21 +13,15 @@ export class NewsService extends BaseNewsService {
     super(http);
   }
 
-  getAll(): Observable<News[]> {
+  getAll(): Observable<Todo[]> {
     return this.http.get<any[]>(`${env.apiUrl}/news`, {headers: this.defaultHeaders}).pipe(
-      map(body => body.map(n => News.fromObject(n)))
+      map(body => body.map(n => Todo.fromObject(n)))
     );
   }
 
-  getNewest(): Observable<News> {
-    return this.http.get<any>(`${env.apiUrl}/news/newest`, {headers: this.defaultHeaders}).pipe(
-      map(body => News.fromObject(body))
-    );
-  }
-
-  create(headline: string, content: string): Observable<News> {
+  create(headline: string, content: string): Observable<Todo> {
     return this.http.post<any>(`${env.apiUrl}/news`, {headline, content}, {headers: this.defaultHeaders}).pipe(
-      map(body => News.fromObject(body))
+      map(body => Todo.fromObject(body))
     );
   }
 }
