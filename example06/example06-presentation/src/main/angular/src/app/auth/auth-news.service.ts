@@ -35,14 +35,15 @@ export class AuthNewsService extends BaseNewsService {
     );
   }
 
-  update(headline: string, content: string): Observable<Todo>{
-    return this.http.put<any>(`${this._authService.getBaseUrl()}/update`), {headline, content}, {headers: this._authService.getAuthHeaders()}).pipe(
+  update(id: number, headline: string, content: string): Observable<Todo>{
+  console.log("updated auth-news")
+    return this.http.put<any>(`${this._authService.getBaseUrl()}/todos/${id}`, {headline, content}, {headers: this._authService.getAuthHeaders()}).pipe(
       map(body => Todo.fromObject(body))
     );
   }
 
-  delete(headline: string, content: string): Observable<Todo>{
-    return this.http.put<any>(`${this._authService.getBaseUrl()}/delete`), {headline, content}, {headers: this._authService.getAuthHeaders()}).pipe(
+  remove(id: number): Observable<Todo>{
+    return this.http.delete<any>(`${this._authService.getBaseUrl()}/todos/${id}`, {headers: this._authService.getAuthHeaders()}).pipe(
       map(body => Todo.fromObject(body))
     );
   }

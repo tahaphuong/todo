@@ -1,5 +1,6 @@
 package de.ls5.wt2.auth;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -73,7 +74,7 @@ public class AuthTodosREST {
 
         toDos.setHeadline(param.getHeadline());
         toDos.setContent(param.getContent());
-//        toDos.setPublishedOn(new Date());
+        toDos.setPublishedOn(new Date());
 
         this.entityManager.persist(toDos);
 
@@ -85,9 +86,11 @@ public class AuthTodosREST {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public DBTodo updateById(
             @PathVariable("id") final long id,
-            @RequestBody final DBTodo param) {
+            @RequestBody final DBTodo param) throws Exception {
 
-        SecurityUtils.getSubject().checkRole("admin");
+        if (!SecurityUtils.getSubject().isAuthenticated()) {
+            throw new Exception("Not authenticated");
+        }
 
         DBTodo todo = this.entityManager.find(DBTodo.class, id);
 
@@ -100,6 +103,7 @@ public class AuthTodosREST {
                 todo.setContent(param.getContent());
             }
         }
+        System.out.print("updated backend");
         return todo;
     }
 
@@ -107,9 +111,11 @@ public class AuthTodosREST {
             path = "/{id}",
             // consumes = MediaType.TEXT_PLAIN_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public DBTodo deleteById(@PathVariable("id") final long id) {
+    public DBTodo deleteById(@PathVariable("id") final long id) throws Exception {
 
-        SecurityUtils.getSubject().checkRole("admin");
+        if (!SecurityUtils.getSubject().isAuthenticated()) {
+            throw new Exception("Not authenticated");
+        }
 
         DBTodo todo = this.entityManager.find(DBTodo.class, id);
 

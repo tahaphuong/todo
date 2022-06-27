@@ -47,7 +47,7 @@ public class TodosREST {
 
         todo.setHeadline(param.getHeadline());
         todo.setContent(param.getContent());
-        todo.setCreatedOn(new Date());
+        todo.setPublishedOn(new Date());
 
         this.entityManager.persist(todo);
 
