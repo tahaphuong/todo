@@ -6,7 +6,7 @@
   <div>
     <span>Headline: </span>
     <span *ngIf="!editMode">{{news.headline}}</span>
-    <span *ngIf="editMode"><input [(ngModel)]="headline" type="text"></span>
+    <span *ngIf="editMode"><input[(ngModel)]="headline" type="text"></span>
   </div>
   <div>
     <span>Content: </span>
@@ -16,7 +16,7 @@
         {{news.content}}
       </span>
     </span>
-    <span *ngIf="editMode"><input [(ngModel)]="content" type="text"></span>
+    <span *ngIf="editMode"><input[(ngModel)]="content" type="text"></span>
   </div>
 </div>
 

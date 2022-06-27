@@ -29,7 +29,9 @@ export class NewsDetailsComponent {
 
   //PUT
   setInputValue() {
-
+    editMode = true;
+    headline = news.headline
+    content = news.content
   }
 
   saveItem() {
