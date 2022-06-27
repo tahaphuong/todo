@@ -28,7 +28,7 @@ public class StartupBean implements ApplicationListener<ContextRefreshedEvent> {
 
             todo.setHeadline("Startup 1");
             todo.setContent("Startup Bean successfully executed");
-            todo.setCreatedOn(new Date());
+            todo.setPublishedOn(new Date());
 
             this.entityManager.persist(todo);
         }

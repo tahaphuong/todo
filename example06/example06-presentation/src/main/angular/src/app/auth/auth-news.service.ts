@@ -23,12 +23,6 @@ export class AuthNewsService extends BaseNewsService {
     );
   }
 
-  getNewest(): Observable<Todo> {
-    return this.http.get<any>(`${this._authService.getBaseUrl()}/news/newest`, {headers: this._authService.getAuthHeaders()}).pipe(
-      map(body => Todo.fromObject(body))
-    );
-  }
-
   create(headline: string, content: string): Observable<Todo> {
     return this.http.post<any>(`${this._authService.getBaseUrl()}/news`, {headline, content}, {headers: this._authService.getAuthHeaders()}).pipe(
       map(body => Todo.fromObject(body))

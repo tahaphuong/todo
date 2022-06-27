@@ -39,7 +39,6 @@ public class WT2Realm extends AuthorizingRealm implements Realm {
                 if ("admin".equals(principals.getPrimaryPrincipal())) {
                     return Collections.singleton("admin");
                 }
-
                 return Collections.emptyList();
             }
 

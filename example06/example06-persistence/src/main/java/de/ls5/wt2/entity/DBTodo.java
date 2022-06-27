@@ -12,19 +12,17 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 @Entity
 public class DBTodo extends DBIdentified {
 
-    private Date createdOn;
+    private Date publishedOn;
     private String headline;
     private String content;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(iso = ISO.DATE_TIME)
-    public Date getCreatedOn() {
-        return createdOn;
+    public Date getPublishedOn() {
+        return publishedOn;
     }
 
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
-    }
+    public void setPublishedOn(Date publishedOn) { this.publishedOn = publishedOn; }
 
     public String getHeadline() {
         return headline;

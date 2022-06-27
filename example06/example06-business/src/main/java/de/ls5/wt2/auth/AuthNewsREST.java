@@ -32,31 +32,6 @@ public class AuthNewsREST {
     @Autowired
     private EntityManager entityManager;
 
-    @GetMapping(path = "newest",
-                produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DBNews> readNewestNews() {
-        final CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-        final CriteriaQuery<DBNews> query = builder.createQuery(DBNews.class);
-
-        final Root<DBNews> from = query.from(DBNews.class);
-
-        final Order order = builder.desc(from.get(DBNews_.publishedOn));
-
-        query.select(from).orderBy(order);
-
-        final List<DBNews> result = this.entityManager.createQuery(query).getResultList();
-
-        // Attribute based permission check using permissions
-        final Subject subject = SecurityUtils.getSubject();
-        final Permission firstFiveNewsItemsPermission = new ViewFirstFiveNewsItemsPermission(result);
-
-        if (!subject.isPermitted(firstFiveNewsItemsPermission)) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
-        return ResponseEntity.ok(result.get(0));
-    }
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<DBNews>> readAllAsJSON() {
         final Subject subject = SecurityUtils.getSubject();

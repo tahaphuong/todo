@@ -1,5 +1,6 @@
 package de.ls5.wt2.auth;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -25,22 +26,6 @@ public class AuthTodosREST {
     @Autowired
     private EntityManager entityManager;
 
-    @GetMapping(path = "newest",
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public DBTodo readNewestNews() {
-        final CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-        final CriteriaQuery<DBTodo> query = builder.createQuery(DBTodo.class);
-
-        final Root<DBTodo> from = query.from(DBTodo.class);
-
-        final Order order = builder.desc(from.get(DBTodo_.createdOn));
-
-        query.select(from).orderBy(order);
-
-        return this.entityManager.createQuery(query).setMaxResults(1).getSingleResult();
-    }
-
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DBTodo> readAllAsJSON() {
         final CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
@@ -58,7 +43,6 @@ public class AuthTodosREST {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public DBTodo readAsJSON(@PathVariable("id") final long id) {
         DBTodo todo = this.entityManager.find(DBTodo.class, id);
-
         return todo;
     }
 
@@ -69,15 +53,15 @@ public class AuthTodosREST {
         if (!SecurityUtils.getSubject().isAuthenticated()) {
             throw new Exception("Not authenticated");
         }
-        final DBTodo toDos = new DBTodo();
+        final DBTodo todo = new DBTodo();
 
-        toDos.setHeadline(param.getHeadline());
-        toDos.setContent(param.getContent());
-//        toDos.setPublishedOn(new Date());
+        todo.setHeadline(param.getHeadline());
+        todo.setContent(param.getContent());
+        todo.setPublishedOn(new Date());
 
-        this.entityManager.persist(toDos);
+        this.entityManager.persist(todo);
 
-        return toDos;
+        return todo;
     }
 
     @PutMapping(path = "/{id}",
@@ -85,12 +69,14 @@ public class AuthTodosREST {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public DBTodo updateById(
             @PathVariable("id") final long id,
-            @RequestBody final DBTodo param) {
+            @RequestBody final DBTodo param) throws Exception {
 
-        SecurityUtils.getSubject().checkRole("admin");
+        //SecurityUtils.getSubject().checkRole("admin");
+        if (!SecurityUtils.getSubject().isAuthenticated()) {
+            throw new Exception("Not authenticated");
+        }
 
         DBTodo todo = this.entityManager.find(DBTodo.class, id);
-
 
         if (todo != null) {
             if (param.getHeadline() != null) {
@@ -107,9 +93,12 @@ public class AuthTodosREST {
             path = "/{id}",
             // consumes = MediaType.TEXT_PLAIN_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public DBTodo deleteById(@PathVariable("id") final long id) {
+    public DBTodo deleteById(@PathVariable("id") final long id) throws Exception {
 
-        SecurityUtils.getSubject().checkRole("admin");
+        //SecurityUtils.getSubject().checkRole("admin");
+        if (!SecurityUtils.getSubject().isAuthenticated()) {
+            throw new Exception("Not authenticated");
+        }
 
         DBTodo todo = this.entityManager.find(DBTodo.class, id);
 
