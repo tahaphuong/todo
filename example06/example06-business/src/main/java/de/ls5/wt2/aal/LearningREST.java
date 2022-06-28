@@ -7,7 +7,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import de.ls5.wt2.entity.DBNews;
+import de.ls5.wt2.entity.DBTodo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,12 +27,12 @@ public class LearningREST {
                 produces = MediaType.APPLICATION_JSON_VALUE)
     public void reset() {
         final CriteriaBuilder builder = this.entityManager.getCriteriaBuilder();
-        final CriteriaQuery<DBNews> query = builder.createQuery(DBNews.class);
-        final Root<DBNews> from = query.from(DBNews.class);
+        final CriteriaQuery<DBTodo> query = builder.createQuery(DBTodo.class);
+        final Root<DBTodo> from = query.from(DBTodo.class);
         query.select(from);
 
-        final List<DBNews> result = this.entityManager.createQuery(query).getResultList();
-        for (DBNews res : result) {
+        final List<DBTodo> result = this.entityManager.createQuery(query).getResultList();
+        for (DBTodo res : result) {
             entityManager.remove(res);
         }
     }

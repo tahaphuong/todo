@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Todo } from './todo';
 
-export abstract class BaseNewsService {
+export abstract class BaseTodoService {
   protected defaultHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });
@@ -12,5 +12,4 @@ export abstract class BaseNewsService {
 
   abstract getAll(): Observable<Todo[]>;
 
-  abstract create(headline: string, content: string): Observable<Todo>;
 }

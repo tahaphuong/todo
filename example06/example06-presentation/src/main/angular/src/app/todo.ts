@@ -3,13 +3,17 @@ export class Todo {
   publishedOn: Date;
   headline: string;
   content: string;
+  author: string;
+  isPrivate: boolean;
 
   static fromObject(object: any): Todo {
-    const n = new Todo();
-    n.id = object.id;
-    n.headline = object.headline;
-    n.content = object.content;
-    n.publishedOn  = new Date(object.publishedOn);
-    return n;
+    const todo = new Todo();
+    todo.id = object.id;
+    todo.headline = object.headline;
+    todo.content = object.content;
+    todo.author = object.author;
+    todo.isPrivate = object.isPrivate;
+    todo.publishedOn  = new Date(object.publishedOn);
+    return todo;
   }
 }

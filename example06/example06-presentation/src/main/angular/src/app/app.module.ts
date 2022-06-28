@@ -8,11 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularComponent } from './angular/angular.component';
 import { AuthComponent } from './auth/auth.component';
-import { CreateNewsComponent } from './angular/create-news/create-news.component';
-import { NewsDetailsComponent } from './angular/news-details/news-details.component';
+import { CreateTodoComponent } from './angular/create-todo/create-todo.component';
+import { TodoDetailsComponent } from './angular/todo-details/todo-details.component';
 import { LoginComponent } from './auth/login/login.component';
-import { CreateNewsAuthComponent } from './auth/create-news-auth/create-news-auth.component';
-import { NewsListComponent } from './angular/news-list/news-list.component';
+import { TodoListComponent } from './angular/todo-list/todo-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -21,11 +20,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     AngularComponent,
     AuthComponent,
-    CreateNewsComponent,
-    CreateNewsAuthComponent,
-    NewsDetailsComponent,
+    CreateTodoComponent,
+    TodoDetailsComponent,
     LoginComponent,
-    NewsListComponent,
+    TodoListComponent,
     NotFoundComponent
   ],
   imports: [

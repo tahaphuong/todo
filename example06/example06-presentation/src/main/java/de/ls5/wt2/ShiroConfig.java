@@ -42,7 +42,6 @@ public class ShiroConfig {
         filters.put("loginFilter", new FormAuthenticationFilterWithoutRedirect());
         filters.put("logoutFilter", new LogoutFilterWithoutRedirect());
 
-
         final Map<String, String> chainDefinition = new LinkedHashMap<>();
 
         // configuration for stateless authentication on each request

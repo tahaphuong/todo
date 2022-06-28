@@ -2,15 +2,15 @@ package de.ls5.wt2.conf.auth.permission;
 
 import java.util.List;
 
-import de.ls5.wt2.entity.DBNews;
+import de.ls5.wt2.entity.DBTodo;
 import org.apache.shiro.authz.Permission;
 
 public class ViewFirstFiveNewsItemsPermission implements Permission {
 
-    private final List<DBNews> news;
+    private final List<DBTodo> todos;
 
-    public ViewFirstFiveNewsItemsPermission(final List<DBNews> news) {
-        this.news = news;
+    public ViewFirstFiveNewsItemsPermission(final List<DBTodo> todos) {
+        this.todos = todos;
     }
 
     @Override
@@ -19,6 +19,6 @@ public class ViewFirstFiveNewsItemsPermission implements Permission {
     }
 
     public boolean check() {
-        return this.news.size() < 5;
+        return this.todos.size() < 5;
     }
 }

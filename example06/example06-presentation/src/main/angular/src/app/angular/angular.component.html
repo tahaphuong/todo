@@ -1,18 +1,13 @@
-<!--
 <div class="row">
-  <div class="col-4">
-    <h4 class="title">Create Todo</h4>
-    <hr>
-    <wt2-create-news (created)="load()"></wt2-create-news>
-  </div>
-  <div class="col-8">
-    <h4 class="title">Latest Todo</h4>
-    <hr>
-    <wt2-news-details [news]="latest"></wt2-news-details>
-    <hr>
+
+  <div class="col-7" *ngIf="!isAuthenticated">
     <h4 class="title">All Todo</h4>
-    <hr>
-    <wt2-news-list [news]="news"></wt2-news-list>
+    <wt2-todo-list [isAuthenticated]="isAuthenticated" [todos]="todos"></wt2-todo-list>
   </div>
+
+  <div [class.col-5]="!isAuthenticated">
+    <wt2-auth (authed)="handleAuthed($event)"></wt2-auth>
+  </div>
+
 </div>
--->
+

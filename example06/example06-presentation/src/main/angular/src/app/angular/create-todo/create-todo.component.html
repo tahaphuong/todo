@@ -6,19 +6,6 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="errorMessage = null"></button>
     </div>
 
-<!--    <form (submit)="createNews($event)">-->
-<!--      <div class="mb-3">-->
-<!--        <label class="form-label">Headline</label>-->
-<!--        <input name="headline" class="form-control" type="text" required [(ngModel)]="headline" placeholder="Enter a headline">-->
-<!--      </div>-->
-<!--      <div class="mb-3">-->
-<!--        <label class="form-label">Content <span [ngClass]="getCharsLeft() < 0 ? 'text-danger' : 'text-muted'">({{getCharsLeft()}})</span></label>-->
-<!--        <textarea name="content" class="form-control" required [(ngModel)]="content" placeholder="Enter some content"></textarea>-->
-<!--      </div>-->
-<!--      <button class="btn w-100 btn-outline-primary" [disabled]="!canCreate">Create Todo :)</button>-->
-<!--    </form>-->
-
-
     <form (submit)="createNews($event)">
       <div class="input-field">
         <div class="input-field-label">Headline of todo</div>
@@ -28,6 +15,17 @@
       <div class="input-field">
         <div class="input-field-label">Content</div>
         <textarea name="content" [(ngModel)]="content" type="text"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="custom-control-label">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            name="privateNote"
+            [(ngModel)]="isPrivate"
+          >
+          Private note</label>
       </div>
 
       <button class="add-button" [disabled]="!canCreate">

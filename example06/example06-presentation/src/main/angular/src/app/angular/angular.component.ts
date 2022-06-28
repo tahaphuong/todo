@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsService } from './news.service';
+import { TodoService } from './todo.service';
 import { Todo } from '../todo';
 
 @Component({
   selector: 'wt2-angular',
   templateUrl: './angular.component.html',
   styleUrls: ['./angular.component.sass'],
-  providers: [NewsService]
+  providers: [TodoService]
 })
 export class AngularComponent implements OnInit {
 
-  public latest: Todo;
-  public news: Todo[] = [];
+  public todos: Todo[] = [];
+  isAuthenticated = false;
 
-  constructor(protected newsService: NewsService) {
+  constructor(protected todoService: TodoService) {
   }
 
   ngOnInit() {
@@ -21,9 +21,16 @@ export class AngularComponent implements OnInit {
   }
 
   load(): void {
-    this.newsService.getAll().subscribe({
-      next: news => this.news = news,
+    this.todoService.getAll().subscribe({
+      next: items => this.todos = items,
       error: console.error
     });
+  }
+
+  handleAuthed(authed: boolean) {
+    this.isAuthenticated = authed;
+    if (!authed) {
+      this.load();
+    }
   }
 }

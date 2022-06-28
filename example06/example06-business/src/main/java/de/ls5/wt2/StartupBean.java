@@ -26,8 +26,8 @@ public class StartupBean implements ApplicationListener<ContextRefreshedEvent> {
         if (firstNewsItem == null) {
             final DBTodo todo = new DBTodo();
 
-            todo.setHeadline("Startup 1");
-            todo.setContent("Startup Bean successfully executed");
+            todo.setHeadline("First todo!");
+            todo.setContent("Log in and add your todo ;)");
             todo.setPublishedOn(new Date());
 
             this.entityManager.persist(todo);

@@ -9,11 +9,15 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(DBTodo.class)
 public abstract class DBTodo_ extends de.ls5.wt2.entity.DBIdentified_ {
 
-	public static volatile SingularAttribute<DBTodo, Date> createdOn;
+	public static volatile SingularAttribute<DBTodo, String> author;
+	public static volatile SingularAttribute<DBTodo, Date> publishedOn;
+	public static volatile SingularAttribute<DBTodo, Boolean> isPrivate;
 	public static volatile SingularAttribute<DBTodo, String> headline;
 	public static volatile SingularAttribute<DBTodo, String> content;
 
-	public static final String CREATED_ON = "createdOn";
+	public static final String AUTHOR = "author";
+	public static final String PUBLISHED_ON = "publishedOn";
+	public static final String IS_PRIVATE = "isPrivate";
 	public static final String HEADLINE = "headline";
 	public static final String CONTENT = "content";
 
