@@ -18,7 +18,7 @@
 
       <div class="tile-content" *ngIf="todo !== selectedTodo">
         <div *ngIf="todo.isPrivate">
-          <span class="badge rounded-pill bg-light">Private note</span>
+          <span class="badge rounded-pill bg-light text-secondary">Private todo</span>
         </div>
         <div><b>{{todo.headline}}</b></div>
         <div [innerHTML]="getTrustedHtml(todo.content)" *ngIf="allowHtmlContent"></div>

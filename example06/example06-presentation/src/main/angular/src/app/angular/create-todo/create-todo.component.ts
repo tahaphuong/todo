@@ -27,7 +27,6 @@ export class CreateTodoComponent {
     this.errorMessage = null;
 
     if (this.headline.trim() != null && this.content.trim() != null) {
-      console.log(this.isPrivate, this.getUsername)
       this.authTodoService.create(this.headline, this.content, this.isPrivate, this.getUsername).subscribe({
         next: () => {
           this.created.emit();

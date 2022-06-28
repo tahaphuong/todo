@@ -94,7 +94,6 @@ public class AuthTodosREST {
         DBTodo todo = this.entityManager.find(DBTodo.class, id);
         Helper.checkSubjectForOneElement(subject, todo);
 
-
         if (todo != null) {
             if (param.getHeadline() != null) {
                 todo.setHeadline(param.getHeadline());

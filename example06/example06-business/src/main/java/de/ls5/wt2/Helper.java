@@ -18,7 +18,7 @@ public class Helper {
 
     public static void checkSubjectForOneElement(Subject subject, DBTodo todo) {
         if (todo.getIsPrivate() && Helper.checkSubject(subject)) {
-            if (!subject.hasRole("admin") && todo.getAuthor() != subject.getPrincipal().toString()) {
+            if (!subject.hasRole("admin") && !subject.getPrincipal().toString().equals(todo.getAuthor())) {
                 throw new UnauthorizedException("Unauthorized for this action.");
             }
         }
